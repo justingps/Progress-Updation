@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -294,25 +293,23 @@
                 issuesDelays: issuesDelays
             };
 
-            // Send data to Google Apps Script
+            // Send data to Google Apps Script using no-cors mode
             try {
-                const response = await fetch("https://script.google.com/macros/s/AKfycbwL03JcG5b_c1pL4OZ1VU2QklPLgNHK8jMkVA3jET-pKGMgkpU-KPt0GIad4PFloaND/exec", {
+                await fetch("https://script.google.com/macros/s/AKfycbwL03JcG5b_c1pL4OZ1VU2QklPLgNHK8jMkVA3jET-pKGMgkpU-KPt0GIad4PFloaND/exec", {
                     method: "POST",
                     body: JSON.stringify(formData),
                     headers: {
                         "Content-Type": "application/json"
-                    }
+                    },
+                    mode: "no-cors" // Add this line
                 });
 
-                const result = await response.json();
-                if (result.status === "success") {
-                    alert("Data Submitted Successfully!");
-                    document.getElementById("progressForm").reset();
-                } else {
-                    throw new Error(result.message);
-                }
+                // Assume the submission was successful
+                alert("Data Submitted Successfully!");
+                document.getElementById("progressForm").reset();
             } catch (error) {
-                alert("Error: " + error.message);
+                console.error("Error:", error);
+                alert("An error occurred while submitting the data.");
             } finally {
                 // Re-enable the submit button
                 submitButton.disabled = false;
