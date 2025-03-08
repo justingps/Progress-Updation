@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -117,9 +119,9 @@
                     <option value="M">M</option>
                     <option value="M2">M2</option>
                     <option value="M3">M3</option>
-                    <option value="NOS">NOS.</option>
-                    <option value="T">T</option>
-                    <option value="KG">KG</option>
+                    <option value="No">No</option>
+                    <option value="MT">MT</option>
+                    <option value="KG">Kg</option>
                 </select>
             </div>
             <div class="form-group">
@@ -142,11 +144,12 @@
                     <option value="Safety Incidents / Near Misses">Safety Incidents / Near Misses</option>
                     <option value="Heat Stress Break">Heat Stress Break</option>
                     <option value="Ramadan Break">Ramadan Break</option>
+                    <option value="Equipment Failure">Equipment Failure</option>
                 </select>
             </div>
             <!-- Remarks Textarea -->
             <div class="form-group">
-                <label for="remarks">Remarks:</label>
+                <label for="remarks">Notes:</label>
                 <textarea id="remarks" name="remarks" rows="4"></textarea>
             </div>
 
@@ -264,7 +267,7 @@
 
             // Check if optional fields are empty and warn the user
             if (!sitePhotograph || !remarks || !issuesDelays) {
-                const confirmation = confirm("Warning: Site Photograph, Remarks, or Issues & Delays are not provided. Do you want to proceed without them?");
+                const confirmation = confirm("Warning: Site Photograph / Notes / Issues & Delays are not provided. Do you want to proceed without them?");
                 if (!confirmation) {
                     return; // Stop submission if the user cancels
                 }
@@ -295,7 +298,7 @@
 
             // Send data to Google Apps Script using no-cors mode
             try {
-                await fetch("https://script.google.com/macros/s/AKfycbwL03JcG5b_c1pL4OZ1VU2QklPLgNHK8jMkVA3jET-pKGMgkpU-KPt0GIad4PFloaND/exec", {
+                await fetch("https://script.google.com/macros/s/AKfycbytce7movbg77unPivSkHUAKRug0pVQYVsk_L5GF_0zII-0gKNs88HsFeBYCwu5xY0I/exec", {
                     method: "POST",
                     body: JSON.stringify(formData),
                     headers: {
